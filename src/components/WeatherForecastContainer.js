@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useState } from "react";
+import SearchBar from "./SearchBar";
+import ForecastDayTabs from "./ForecastDayTabs";
+import FavoriteCitiesContainer from "./FavoriteCitiesContainer";
 
 const WeatherForecastContainer = () => {
+  const [displayFav, setDisplayFav] = useState(false);
   return (
-    <div>WeatherForecastContainer</div>
-  )
-}
+    <>
+      <SearchBar />
+      {displayFav && <FavoriteCitiesContainer display={displayFav} />}
+      <ForecastDayTabs />
+    </>
+  );
+};
 
-export default WeatherForecastContainer
+export default WeatherForecastContainer;
