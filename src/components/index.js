@@ -7,6 +7,7 @@ import WeatherDataTable from "./WeatherDataTable";
 import WeatherForecastContainer from "./WeatherForecastContainer";
 import Home from './Home';
 import FavoriteCitiesContainer from "./FavoriteCitiesContainer";
+import Logo from "./Logo";
 export {
   ForecastDayTabs,
   Loading,
@@ -17,4 +18,5 @@ export {
   WeatherForecastContainer,
   Home,
   FavoriteCitiesContainer,
+  Logo
 };

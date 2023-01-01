@@ -2,7 +2,7 @@ import React from 'react'
 
 const WeatherChart = () => {
   return (
-    <div>WeatherChart</div>
+    <h2>WeatherChart</h2>
   )
 }
 

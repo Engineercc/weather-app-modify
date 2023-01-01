@@ -1,9 +1,12 @@
-import React from 'react'
-
+import React, { useState } from "react";
+import Logo from "./Logo";
+import { useGlobalContext } from "../context/weather_context";
 const SearchBar = () => {
+const {searchValue,handleChange, handleSearch} = useGlobalContext();
   return (
     <nav className="navbar navbar-light bg-transparent pt-3 pb-4 search-city">
-      <form className="d-flex" >
+      <Logo />
+      <form className="d-flex" onSubmit={handleSearch}>
         <div className="input-group mb-0">
           <span className="input-group-text">
             <i className="icon small white">
@@ -24,17 +27,19 @@ const SearchBar = () => {
             placeholder="Search for city"
             aria-label="Username"
             aria-describedby="basic-addon1"
+            value={searchValue}
+            onChange={handleChange}
           />
         </div>
-        <button className="btn btn-success mx-4" type="submit">
+        <button className="btn btn-search mx-4" type="submit">
           Search
         </button>
-        <button className="btn btn-info" type="button">
+        <button className="btn btn-clear" type="button">
           Clear
         </button>
       </form>
     </nav>
   );
-}
+};
 
-export default SearchBar
+export default SearchBar;

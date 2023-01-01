@@ -49,7 +49,7 @@ const ForecastDayTabs = () => {
         <div className="d-flex justify-content-between mt-3 pt-4">
           <h2> Weather Forecast</h2>
           <h2 className="text-capitalize">Ankara</h2>
-          <button className="btn btn-info mx-4">Add to favorites</button>
+          <button className="btn btn-favorite mx-4">Add to favorites</button>
         </div>
         <WeatherChart />
         <WeatherDataTable />

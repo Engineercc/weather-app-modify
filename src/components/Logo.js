@@ -1,9 +1,9 @@
 import React from 'react'
 
-import img from '../assets/images/weather-app-logo.png'
+import img from '../assets/images/logo.png'
 const Logo = () => {
   return (
-   <img src={img} alt="weather-app-logo" width={48} />
+   <img src={img} alt="weather-app-logo" width={96} />
   )
 }
 

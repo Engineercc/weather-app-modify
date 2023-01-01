@@ -13,7 +13,7 @@ const FavoriteCitiesContainer = ({ display }) => {
             <div className="card city-card rounded border-0">
               <div className="card-body position-relative rounded">
                 <div className="city-img position-absolute rounded">
-                  <img src={citybg} className="img-fluid rounded" />
+                  <img src={citybg} className="img-fluid rounded" alt="keke" />
                   <div className="img-cover rounded"></div>
                 </div>
 
@@ -43,9 +43,7 @@ const FavoriteCitiesContainer = ({ display }) => {
             </div>
           </Link>
         </li>
-        <Link to="/weather-stats">
-          <WeatherChart />
-        </Link>
+      
       </ul>
     </div>
   );

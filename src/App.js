@@ -9,6 +9,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route path="favorite-cities" element={<FavoriteCities />} />
+        <Route path="weather-stats" element={<WeatherStats />} />
       </Route>
     </Routes>
   );

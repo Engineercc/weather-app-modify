@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import gif from '../assets/images/loading.gif'
 const TemperatureContainer = () => {
   return (
     <div className="col-5 bg-blue position-relative">
       <div className="bg-img position-absolute">
-        <img src="" alt="" className="img-fluid" />
+        <img src={gif} alt="" className="img-fluid" />
         <div className="img-cover"></div>
       </div>
 

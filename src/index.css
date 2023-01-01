@@ -1,16 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,600;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,600;1,800;1,900&display=swap");
 
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --primary-50: #eff6ff;
+  --primary-100: #dbeafe;
+  --primary-200: #bfdbfe;
+  --primary-300: #93c5fd;
+  --primary-400: #60a5fa;
+  --primary-500: #3b82f6;
+  --primary-600: #2563eb;
+  --primary-700: #1d4ed8;
+  --primary-800: #1e40af;
+  --primary-900: #1e3a8a;
+
+  /* grey */
+  --grey-50: #f0f4f8;
+  --grey-100: #d9e2ec;
+  --grey-200: #bcccdc;
+  --grey-300: #9fb3c8;
+  --grey-400: #829ab1;
+  --grey-500: #627d98;
+  --grey-600: #486581;
+  --grey-700: #334e68;
+  --grey-800: #243b53;
+  --grey-900: #102a43;
+  /* rest of the colors */
+  --black: #222;
+  --white: #fff;
+  --red-light: #f8d7da;
+  --red-dark: #842029;
+  --green-light: #d1e7dd;
+  --green-dark: #0f5132;
+  --teal: #10a19d;
+  --purple: #540375;
+  --orange: #ff7000;
+  --yellow: #ffbf00;
+
+  --borderRadius: 0.75rem;
+  --letterSpacing: 1px;
+  --transition: 0.3s ease-in-out all;
+  --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 body {
   background-color: #f3fbff;
+  font-family: var(--bodyFont);
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--textColor);
 }
 
 i.icon.big svg {
   width: 48px;
-  heighT: 48px;
+  height: 48px;
 }
 
 i.icon.white svg path {
@@ -22,11 +68,11 @@ p.grayed-out {
 }
 
 .fs-7 {
-  font-size: .85rem
+  font-size: 0.85rem;
 }
 
 .rounded {
-  border-radius: 12px !important
+  border-radius: 12px !important;
 }
 
 .card.city-card .city-img {
@@ -53,7 +99,11 @@ p.grayed-out {
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(180deg, rgba(217, 217, 217, 0) 29.55%, rgb(0 0 0 / 76%) 90.73%);
+  background: linear-gradient(
+    180deg,
+    rgba(217, 217, 217, 0) 29.55%,
+    rgb(0 0 0 / 76%) 90.73%
+  );
   width: 100%;
   height: 100%;
   z-index: 0;
@@ -94,7 +144,7 @@ h1.weather-c i {
 }
 
 .nav-pills .nav-link.active,
-.nav-pills .show>.nav-link {
+.nav-pills .show > .nav-link {
   color: #110e3c;
   background: white;
 }
@@ -202,7 +252,7 @@ h1.weather-c i {
 
 .card.city-card .city-img img {
   transform: scale(1);
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .card.city-card:hover .city-img img {
@@ -244,7 +294,7 @@ h1.weather-c i {
 ::-webkit-scrollbar-track {
   border-radius: 10px;
   background: rgb(240, 240, 240);
-  border: 1px solid transparent
+  border: 1px solid transparent;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -258,7 +308,7 @@ h1.weather-c i {
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: linear-gradient(left, #22ADD4, #1E98BA);
+  background: linear-gradient(left, #22add4, #1e98ba);
 }
 
 .cities-list .list-group-item {
@@ -266,4 +316,64 @@ h1.weather-c i {
 }
 tr {
   vertical-align: middle;
+}
+
+.btn {
+  border-radius: var(--borderRadius) !important;
+  border: transparent;
+  display: inline-block;
+  outline: none;
+  box-shadow: var(--shadow-2);
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
+.btn:hover {
+  color: var(--white)
+}
+
+.btn:focus {
+  box-shadow: var(--shadow-2);
+}
+
+.btn-search {
+  background-color: var(--teal);
+  width: 50%;
+}
+
+.btn-search:hover {
+  background-color: #86C8BC !important;
+}
+
+.btn-clear {
+  background-color: var(--yellow);
+  width: 50%;
+}
+
+.btn-clear:hover {
+  background-color: #FEBE8C;
+}
+
+.btn-favorite {
+  background-color: var(--purple);
+  color: var(--white);
+}
+
+.btn-danger {
+  background: var(--red-light);
+  color: var(--red-dark);
+}
+
+.btn-danger:hover {
+  background: var(--red-dark);
+  color: var(--white);
+}
+
+.home-content img {
+ width: 100%;
+ border-radius: 8px;
+ filter: drop-shadow(2px 4px 6px var(--primary-900));
+}
+.home-content p {
+  filter: drop-shadow(2px 4px 6px black);
 }

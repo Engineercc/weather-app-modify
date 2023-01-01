@@ -1,6 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router";
-import { WeatherForecastContainer } from "../components";
+import {
+  FavoriteCitiesContainer,
+  WeatherForecastContainer,
+  SearchBar,
+  ForecastDayTabs,
+} from "../components";
 import TemperatureContainer from "./../components/TemperatureContainer";
 
 const SharedLayout = () => {
@@ -9,8 +14,9 @@ const SharedLayout = () => {
       <div className="row gt-0">
         <div className="col-md-7">
           <div className="p-3">
-            <WeatherForecastContainer />
+           <WeatherForecastContainer/>
             <Outlet />
+            <ForecastDayTabs />
           </div>
         </div>
         <TemperatureContainer />
