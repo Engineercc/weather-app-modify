@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import gif from "../assets/images/loading.gif";
 import { useGlobalContext } from "../context/weather_context";
 import Loading from "./Loading";
-
+import sunsetIcon from "../assets/images/sunset.svg";
 const TemperatureContainer = () => {
   const {
     loading,
@@ -73,7 +73,7 @@ const TemperatureContainer = () => {
                   </Link>
                 </nav>
               </div>
-              {loading && <Loading/>}
+              {loading && <Loading />}
               {temp ? (
                 <div className="flex-grow-1">
                   <div className=" h-100 d-flex align-items-center justify-content-center flex-column">
@@ -99,7 +99,7 @@ const TemperatureContainer = () => {
                       </h1>
                     </div>
                     <div className="mb-4">
-                      <p className="fs-5 grayed-out">
+                      <p className="fs-5 grayed-out text-capitalize">
                         {cityName}, {country}
                       </p>
                     </div>
@@ -108,8 +108,8 @@ const TemperatureContainer = () => {
                         <p className="fs-7 m-0 grayed-out">
                           <i className="icon small">
                             <svg
-                              width="18"
-                              height="18"
+                              width="24"
+                              height="24"
                               fill="currentColor"
                               viewBox="0 0 24 24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -119,26 +119,10 @@ const TemperatureContainer = () => {
                           </i>{" "}
                           Feels like {feelsLike} °C
                         </p>
-                      </div>
+                      </div>                    
                       <div>
                         <p className="fs-7 m-0 grayed-out">
-                          <i className="icon small">
-                            <svg
-                              width="18"
-                              height="18"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12ZM11 1h2v3h-2V1Zm0 19h2v3h-2v-3ZM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93v-.001ZM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121Zm2.121-14.85 1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121v-.001ZM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121ZM23 11v2h-3v-2h3ZM4 11v2H1v-2h3Z"></path>
-                            </svg>
-                          </i>
-                          Sunset {sunSet}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="fs-7 m-0 grayed-out">
-                          <i className="icon small">
+                          <i className="icon small me-2">
                             <svg
                               width="18"
                               height="18"
@@ -152,10 +136,20 @@ const TemperatureContainer = () => {
                           Sunrise {sunRise}
                         </p>
                       </div>
+                      <div>
+                        <p className="fs-7 m-0 grayed-out">
+                          <i className="icon small me-2">
+                            <img src={sunsetIcon} alt="" />
+                          </i>
+                          Sunset {sunSet}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              ) : ''}
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

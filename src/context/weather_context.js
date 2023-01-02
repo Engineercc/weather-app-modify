@@ -99,7 +99,7 @@ const WeatherProvider = ({ children }) => {
   };
 
   const getGeoLocationValues = async (city) => {
-    const geoLoc_url = `/direct?q=${city}&limit=1&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
+    const geoLoc_url = `/direct?q=${city}&limit=2&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
     try {
       const response = await geoLocationFetch.get(geoLoc_url);
       const data = response.data;
