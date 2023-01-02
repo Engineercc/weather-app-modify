@@ -3,14 +3,9 @@ import SearchBar from "./SearchBar";
 import homeBg from "../assets/images/home-bg.webp";
 import { useGlobalContext } from "../context/weather_context";
 
-let url =
-  "/weather?lat=40.5278585&lon=29.878077&appid=7bd1dc3b40a59079ab8973aa5afc7cf5";
+
 const WeatherForecastContainer = () => {
- const {weatherInfo,loading,weatherForecastInfo,geoLocationInfo} = useGlobalContext()
- console.log(weatherInfo);
- console.log(loading);
- console.log(weatherForecastInfo);
- console.log(geoLocationInfo);
+
   return (
     <>
       <SearchBar />

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Logo from "./Logo";
 import { useGlobalContext } from "../context/weather_context";
 const SearchBar = () => {
-const {searchValue,handleChange, handleSearch} = useGlobalContext();
+const { searchValue, handleChange, handleSearch, clearValues } =
+  useGlobalContext();
   return (
     <nav className="navbar navbar-light bg-transparent pt-3 pb-4 search-city">
       <Logo />
@@ -34,7 +35,7 @@ const {searchValue,handleChange, handleSearch} = useGlobalContext();
         <button className="btn btn-search mx-4" type="submit">
           Search
         </button>
-        <button className="btn btn-clear" type="button">
+        <button className="btn btn-clear" type="button" onClick={clearValues}>
           Clear
         </button>
       </form>
