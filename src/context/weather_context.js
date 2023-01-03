@@ -28,6 +28,7 @@ const WeatherProvider = ({ children }) => {
     state.weatherInfo.main?.feels_like - kelvinValue
   );
   const humidity = state.weatherInfo.main?.humidity - kelvinValue;
+  const weather = state.weatherInfo.weather && state.weatherInfo.weather;
   const timezone = state.weatherInfo?.timezone;
 
   const calculateSun = (timezone, sunValue) => {
@@ -37,7 +38,6 @@ const WeatherProvider = ({ children }) => {
       .format("LT");
     return value;
   };
-  console.log(state.searchCityValue);
   const sunRise = calculateSun(timezone, state.weatherInfo.sys?.sunrise);
   const sunSet = calculateSun(timezone, state.weatherInfo.sys?.sunset);
 
@@ -63,6 +63,7 @@ const WeatherProvider = ({ children }) => {
       payload: initialState,
     });
   };
+  console.log("2" + state.searchCityValue);
 
   const getWeather = async (latValue, lonValue) => {
     dispatch({
@@ -117,11 +118,14 @@ const WeatherProvider = ({ children }) => {
       console.log(error.msg);
     }
   };
+  console.log(state);
 
+  useEffect(() => {}, [state.searchCityValue]);
   return (
     <WeatherContext.Provider
       value={{
         ...state,
+        searchValue: state.searchCityValue,
         cityName,
         handleChange,
         handleSearch,
@@ -133,6 +137,7 @@ const WeatherProvider = ({ children }) => {
         humidity,
         sunSet,
         sunRise,
+        weather
       }}
     >
       {children}

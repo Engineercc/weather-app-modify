@@ -43,6 +43,7 @@ const reducer = (state, action) => {
       weatherInfo: [],
       geoLocationInfo: [],
       weatherForecastInfo: [],
+      searchCityValue: "",
     };
   }
 

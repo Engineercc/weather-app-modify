@@ -4,6 +4,8 @@ import gif from "../assets/images/loading.gif";
 import { useGlobalContext } from "../context/weather_context";
 import Loading from "./Loading";
 import sunsetIcon from "../assets/images/sunset.svg";
+import images from "./../images";
+
 const TemperatureContainer = () => {
   const {
     loading,
@@ -15,12 +17,14 @@ const TemperatureContainer = () => {
     humidity,
     sunSet,
     sunRise,
+    weather,
   } = useGlobalContext();
+  
 
   return (
     <div className="col-5 bg-blue position-relative">
       <div className="bg-img position-absolute">
-        <img src={gif} alt="" className="img-fluid" />
+        <img src={images.cloudy} alt="" className="img-fluid" />
         <div className="img-cover"></div>
       </div>
 
@@ -79,6 +83,7 @@ const TemperatureContainer = () => {
                   <div className=" h-100 d-flex align-items-center justify-content-center flex-column">
                     <div>
                       <div className="d-flex align-items-center">
+                        <img src={images.cloudy} alt="coludy" />
                         <div className="me-4">
                           <i className="icon big white">
                             {
@@ -104,6 +109,23 @@ const TemperatureContainer = () => {
                       </p>
                     </div>
                     <div className="d-flex align-items-center gap-5">
+                      {weather.map((item) => {
+                        const { id, main, icon } = item;
+                        return (
+                          <div key={id}>
+                            <p className="fs-7 m-0 grayed-out">
+                              <img
+                                src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+                                alt=""
+                                width={56}
+                              />
+                              {main}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div className="d-flex align-items-center gap-5">
                       <div>
                         <p className="fs-7 m-0 grayed-out">
                           <i className="icon small">
@@ -119,7 +141,7 @@ const TemperatureContainer = () => {
                           </i>{" "}
                           Feels like {feelsLike} °C
                         </p>
-                      </div>                    
+                      </div>
                       <div>
                         <p className="fs-7 m-0 grayed-out">
                           <i className="icon small me-2">
