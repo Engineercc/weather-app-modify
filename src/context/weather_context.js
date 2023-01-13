@@ -19,7 +19,20 @@ const initialState = {
   weatherForecastInfo: [],
   searchCityValue: "",
 };
+
+const days = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+];
+
 const WeatherProvider = ({ children }) => {
+  const [currentPosition, setCurrentPosition] = useState({});
+  const [locationError, setLocationError] = useState(null);
   const [state, dispatch] = useReducer(reducer, initialState);
   const [cityName, setCityName] = useState(state.searchCityValue);
   const temp = Math.round(state.weatherInfo.main?.temp - kelvinValue);
@@ -57,13 +70,19 @@ const WeatherProvider = ({ children }) => {
     getGeoLocationValues(state.searchCityValue);
   };
 
+  const FiveDaysForecast = () => {
+    dispatch({
+      type: "GET_FIVEDAYS_FORECAST_ARR",
+      payload: state.weatherForecastInfo,
+    });
+  };
+
   const clearValues = () => {
     dispatch({
       type: "CLEAR_WEATHER_VALUES",
       payload: initialState,
     });
   };
-  console.log("2" + state.searchCityValue);
 
   const getWeather = async (latValue, lonValue) => {
     dispatch({
@@ -118,14 +137,42 @@ const WeatherProvider = ({ children }) => {
       console.log(error.msg);
     }
   };
-  console.log(state);
 
-  useEffect(() => {}, [state.searchCityValue]);
+  const getCurrentLocationUser = () => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => setCurrentPosition(position.coords),
+      (error) => setLocationError(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  };
+  console.log(state.weatherForecastInfo);
+  useEffect(() => {
+    getCurrentLocationUser();
+  }, []);
+  useEffect(() => {
+    getWeather(currentPosition.latitude, currentPosition.longitude);
+    getFiveDaysForecast(currentPosition.latitude, currentPosition.longitude);
+  }, [currentPosition]);
+  useEffect(() => {
+    if (!Object.keys(currentPosition).length) return;
+    if (weather) {
+      const interval = setInterval(() => {
+        getGeoLocationValues(state.searchCityValue);
+      }, 3600000);
+      return () => clearInterval(interval);
+    }
+  }, [state.searchCityValue, weather]);
+
+  if (locationError) {
+    return <div>Error: {locationError}</div>;
+  }
+
   return (
     <WeatherContext.Provider
       value={{
         ...state,
         searchValue: state.searchCityValue,
+        currentLocationName: state.weatherInfo.name,
         cityName,
         handleChange,
         handleSearch,
@@ -137,7 +184,7 @@ const WeatherProvider = ({ children }) => {
         humidity,
         sunSet,
         sunRise,
-        weather
+        weather,
       }}
     >
       {children}

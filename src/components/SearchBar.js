@@ -2,13 +2,13 @@ import React from "react";
 import Logo from "./Logo";
 import { useGlobalContext } from "../context/weather_context";
 const SearchBar = () => {
-const { searchValue, handleChange, handleSearch, clearValues } =
-  useGlobalContext();
+  const { searchValue, handleChange, handleSearch, clearValues } =
+    useGlobalContext();
   console.log(searchValue);
   return (
     <nav className="navbar navbar-light bg-transparent pt-3 pb-4 search-city">
       <Logo />
-      <form className="d-flex">
+      <form className="d-flex" onSubmit={handleSearch}>
         <div className="input-group mb-0">
           <span className="input-group-text">
             <i className="icon small white">
@@ -33,11 +33,7 @@ const { searchValue, handleChange, handleSearch, clearValues } =
             onChange={handleChange}
           />
         </div>
-        <button
-          className="btn btn-search mx-4"
-          type="button"
-          onClick={handleSearch}
-        >
+        <button className="btn btn-search mx-4" type="submit">
           Search
         </button>
         <button className="btn btn-clear" type="button" onClick={clearValues}>
