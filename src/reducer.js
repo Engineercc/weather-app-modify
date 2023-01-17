@@ -5,6 +5,7 @@ import {
   CLEAR_WEATHER_VALUES,
   SET_SEARCH_VALUE,
   LOADING,
+  GET_FIVEDAYS_FORECAST_ARR,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -43,6 +44,7 @@ const reducer = (state, action) => {
       weatherInfo: [],
       geoLocationInfo: [],
       weatherForecastInfo: [],
+      fiveDaysArr: [],
       searchCityValue: "",
     };
   }
@@ -54,6 +56,19 @@ const reducer = (state, action) => {
     };
   }
 
+  if (action.type === GET_FIVEDAYS_FORECAST_ARR) {
+    let itemsPerTab = 8;
+    let listArr = Object.values(state.weatherForecastInfo.list);
+    const tab = Math.ceil(listArr.length / itemsPerTab);
+    const newForecastDays = Array.from({ length: tab }, (_, index) => {
+      const start = index * itemsPerTab;
+      return listArr.slice(start, start + itemsPerTab);
+    });
+    return {
+      ...state,
+      fiveDaysArr: newForecastDays,
+    };
+  }
   return state;
 };
 

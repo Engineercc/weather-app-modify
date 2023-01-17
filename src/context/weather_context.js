@@ -12,25 +12,26 @@ import moment from "moment/moment";
 
 const WeatherContext = createContext();
 const kelvinValue = 273;
+  const days = [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+  ];
 const initialState = {
   loading: false,
   weatherInfo: [],
   geoLocationInfo: [],
   weatherForecastInfo: [],
+  fiveDaysArr: [],
   searchCityValue: "",
 };
 
-const days = [
-  "sunday",
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-];
-
 const WeatherProvider = ({ children }) => {
+  const [tabCount, setTabCount] = useState(0);
   const [currentPosition, setCurrentPosition] = useState({});
   const [locationError, setLocationError] = useState(null);
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -70,13 +71,7 @@ const WeatherProvider = ({ children }) => {
     getGeoLocationValues(state.searchCityValue);
   };
 
-  const FiveDaysForecast = () => {
-    dispatch({
-      type: "GET_FIVEDAYS_FORECAST_ARR",
-      payload: state.weatherForecastInfo,
-    });
-  };
-
+  console.log(state);
   const clearValues = () => {
     dispatch({
       type: "CLEAR_WEATHER_VALUES",
@@ -84,6 +79,12 @@ const WeatherProvider = ({ children }) => {
     });
   };
 
+  const FiveDaysForecast = () => {
+    dispatch({
+      type: "GET_FIVEDAYS_FORECAST_ARR",
+      payload: state.weatherForecastInfo,
+    });
+  };
   const getWeather = async (latValue, lonValue) => {
     dispatch({
       type: "LOADING",
@@ -112,12 +113,12 @@ const WeatherProvider = ({ children }) => {
         type: "GET_FIVE_FORECAST_WEATHER",
         payload: data,
       });
+      FiveDaysForecast();
       state.loading = false;
     } catch (error) {
       console.log(error.msg);
     }
   };
-
   const getGeoLocationValues = async (city) => {
     const geoLoc_url = `/direct?q=${city}&limit=2&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
     try {
@@ -145,7 +146,7 @@ const WeatherProvider = ({ children }) => {
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   };
-  console.log(state.weatherForecastInfo);
+
   useEffect(() => {
     getCurrentLocationUser();
   }, []);
@@ -173,6 +174,7 @@ const WeatherProvider = ({ children }) => {
         ...state,
         searchValue: state.searchCityValue,
         currentLocationName: state.weatherInfo.name,
+        fiveDaysArr: state.fiveDaysArr,
         cityName,
         handleChange,
         handleSearch,
@@ -185,6 +187,10 @@ const WeatherProvider = ({ children }) => {
         sunSet,
         sunRise,
         weather,
+        tabCount,
+        setTabCount,
+        days,
+        kelvinValue
       }}
     >
       {children}

@@ -38,7 +38,7 @@ const TemperatureContainer = () => {
   }, [time]);
 
   return (
-    <div className="col-5 bg-blue position-relative">
+    <>
       <div className="bg-img position-absolute">
         <img src={images.cloudy} alt="" className="img-fluid" />
         <div className="img-cover"></div>
@@ -282,7 +282,7 @@ const TemperatureContainer = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

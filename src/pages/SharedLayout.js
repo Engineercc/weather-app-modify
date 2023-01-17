@@ -12,15 +12,15 @@ const SharedLayout = () => {
   return (
     <div className="container-fluid">
       <div className="row gt-0">
-        <div className="col-md-7">
-          <div className="p-3">
-           <WeatherForecastContainer/>
-            <Outlet />
-            <ForecastDayTabs />
-          </div>
+        <div className="col-md-7 p-3">
+          <WeatherForecastContainer />
+          <Outlet />
         </div>
-        <TemperatureContainer />
+        <div className="col-md-5 bg-blue position-relative">
+          <TemperatureContainer />
+        </div>
       </div>
+      <ForecastDayTabs />
     </div>
   );
 };
