@@ -370,7 +370,6 @@ tr {
 }
 
 .home-content img {
- width: 100%;
  border-radius: 8px;
  filter: drop-shadow(2px 4px 6px var(--primary-900));
 }

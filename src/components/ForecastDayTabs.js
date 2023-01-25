@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import WeatherChart from "./WeatherChart";
 import WeatherDataTable from "./WeatherDataTable";
 import { useGlobalContext } from "./../context/weather_context";
@@ -14,6 +14,9 @@ const ForecastDayTabs = () => {
     currentLocationName,
     days,
   } = useGlobalContext();
+useEffect(() => {
+  setDisplayChart(true);
+}, [cityName]);
 
   return (
     <div className="weather-tabs mt-4">
@@ -47,11 +50,14 @@ const ForecastDayTabs = () => {
           <h2 className="text-capitalize">
             {cityName ? cityName : currentLocationName}
           </h2>
-          <button className="btn btn-favorite mx-4">Add to favorites</button>
+          <button
+            className="btn btn-favorite mx-4"
+            onClick={() => setDisplayChart(!displayChart)}
+          >{`${displayChart ? "Weather Line Chart" : "Weather Table"}`}</button>
+          
         </div>
-        <div className="d-flex">
-          <WeatherDataTable />
-          <WeatherChart />
+        <div className="mt-3">
+          {displayChart ? <WeatherDataTable /> : <WeatherChart />}
         </div>
       </div>
     </div>
