@@ -6,8 +6,14 @@ import { useGlobalContext } from "./../context/weather_context";
 const ForecastDayTabs = () => {
   const [displayChart, setDisplayChart] = useState(true);
 
-  const { fiveDaysArr, tabCount, setTabCount, cityName, currentLocationName,days } =
-    useGlobalContext();
+  const {
+    fiveDaysArr,
+    tabCount,
+    setTabCount,
+    cityName,
+    currentLocationName,
+    days,
+  } = useGlobalContext();
 
   return (
     <div className="weather-tabs mt-4">
@@ -15,10 +21,13 @@ const ForecastDayTabs = () => {
         <nav className="nav nav-pills flex-column flex-sm-row">
           {fiveDaysArr.map((day, index) => {
             let dateName = new Date(day[index].dt * 1000);
-            let dayName = days[dateName.getDay()];
+            console.log(dateName);
+            let dayName = days[dateName.getUTCDay()];
+            console.log(dayName);
             return (
               <button
                 type="button"
+                key={index}
                 className={`flex-sm-fill text-sm-center nav-link text-capitalize ${
                   index === tabCount ? "active" : null
                 }`}
@@ -40,15 +49,10 @@ const ForecastDayTabs = () => {
           </h2>
           <button className="btn btn-favorite mx-4">Add to favorites</button>
         </div>
-        <button type="button" onClick={() => setDisplayChart(!displayChart)}>
-          {displayChart ? "Data Table" : "Line Chart"}
-        </button>
-        {displayChart ? (
-          <WeatherChart  />
-        ) : (
-          <WeatherDataTable  />
-        )}
-       
+        <div className="d-flex">
+          <WeatherDataTable />
+          <WeatherChart />
+        </div>
       </div>
     </div>
   );

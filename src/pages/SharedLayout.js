@@ -20,7 +20,7 @@ const SharedLayout = () => {
           <TemperatureContainer />
         </div>
       </div>
-      <ForecastDayTabs />
+    
     </div>
   );
 };

@@ -377,3 +377,7 @@ tr {
 .home-content p {
   filter: drop-shadow(2px 4px 6px black);
 }
+
+table img {
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.521));
+}

@@ -9,18 +9,19 @@ import {
 import reducer from "../reducer";
 import { geoLocationFetch, weatherFetch } from "../utils/customFetch";
 import moment from "moment/moment";
+import images from "./../images";
 
 const WeatherContext = createContext();
 const kelvinValue = 273;
-  const days = [
-    "sunday",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-  ];
+const days = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+];
 const initialState = {
   loading: false,
   weatherInfo: [],
@@ -38,6 +39,8 @@ const WeatherProvider = ({ children }) => {
   const [cityName, setCityName] = useState(state.searchCityValue);
   const temp = Math.round(state.weatherInfo.main?.temp - kelvinValue);
   const country = state.weatherInfo.sys?.country;
+  const weatherStatForBg =
+    state.weatherInfo.weather && state.weatherInfo?.weather[0].main;
   const feelsLike = Math.round(
     state.weatherInfo.main?.feels_like - kelvinValue
   );
@@ -69,6 +72,7 @@ const WeatherProvider = ({ children }) => {
   const handleSearch = (e) => {
     e.preventDefault();
     getGeoLocationValues(state.searchCityValue);
+    setTabCount(0);
   };
 
   console.log(state);
@@ -146,13 +150,13 @@ const WeatherProvider = ({ children }) => {
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   };
-
+  console.log(currentPosition);
   useEffect(() => {
     getCurrentLocationUser();
   }, []);
   useEffect(() => {
-    getWeather(currentPosition.latitude, currentPosition.longitude);
-    getFiveDaysForecast(currentPosition.latitude, currentPosition.longitude);
+    getWeather(currentPosition?.latitude, currentPosition?.longitude);
+    getFiveDaysForecast(currentPosition?.latitude, currentPosition?.longitude);
   }, [currentPosition]);
   useEffect(() => {
     if (!Object.keys(currentPosition).length) return;
@@ -164,10 +168,6 @@ const WeatherProvider = ({ children }) => {
     }
   }, [state.searchCityValue, weather]);
 
-  if (locationError) {
-    return <div>Error: {locationError}</div>;
-  }
-
   return (
     <WeatherContext.Provider
       value={{
@@ -175,6 +175,7 @@ const WeatherProvider = ({ children }) => {
         searchValue: state.searchCityValue,
         currentLocationName: state.weatherInfo.name,
         fiveDaysArr: state.fiveDaysArr,
+        weatherStatForBg,
         cityName,
         handleChange,
         handleSearch,
@@ -190,7 +191,7 @@ const WeatherProvider = ({ children }) => {
         tabCount,
         setTabCount,
         days,
-        kelvinValue
+        kelvinValue,
       }}
     >
       {children}
