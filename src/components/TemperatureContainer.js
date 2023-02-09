@@ -31,7 +31,6 @@ const TemperatureContainer = () => {
   // };
  
   const imagesKey = Object.keys(images);
-  const imagesValues = Object.values(images);
   const setBgImg = imagesKey.find((image) => {
       if(image.includes(weatherStatForBg?.toLowerCase())) {
         return image;
