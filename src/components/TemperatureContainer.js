@@ -36,7 +36,7 @@ const TemperatureContainer = () => {
         return image;
       }
     });
-console.log(images[setBgImg]);
+// console.log(images[setBgImg]);
   let clock = moment(new Date()).format("ddd D MMM YYYY hh:mm:ss A");
   useEffect(() => {
     const interval = setInterval(() => {

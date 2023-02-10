@@ -4,7 +4,6 @@ import { useGlobalContext } from "../context/weather_context";
 const SearchBar = () => {
   const { searchValue, handleChange, handleSearch, clearValues } =
     useGlobalContext();
-  console.log(searchValue);
   return (
     <nav className="navbar navbar-light bg-transparent pt-3 pb-4 search-city">
       <Logo />

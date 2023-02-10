@@ -22,7 +22,7 @@ const ForecastDayTabs = () => {
         <nav className="nav nav-pills flex-column flex-sm-row">
           {fiveDaysArr.map((day, index) => {
             let dateName = new Date(day[index].dt * 1000);
-            console.log(dateName);
+            // console.log(dateName);
             let dayName = days[dateName.getDay()];
             return (
               <button
