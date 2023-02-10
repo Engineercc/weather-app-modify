@@ -15,7 +15,7 @@ const WeatherDataTable = () => {
           const tempMax = Math.round(day[tabCount].main.temp_max - kelvinValue);
           let time = day[index].dt_txt.slice(11, 16);
           return (
-            <tr>
+            <tr key={index}>
               <td>{time}</td>
               <td>{temp}°C</td>
               <td>

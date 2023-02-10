@@ -4,9 +4,8 @@ import gif from "../assets/images/loading.gif";
 import { useGlobalContext } from "../context/weather_context";
 import Loading from "./Loading";
 import sunsetIcon from "../assets/images/sunset.svg";
-import images from "./../images";
 import moment from "moment/moment";
-
+import images from "../assets/images";
 const TemperatureContainer = () => {
   const [time, setTime] = useState("");
   const {
@@ -20,6 +19,7 @@ const TemperatureContainer = () => {
     sunSet,
     sunRise,
     weather,
+    weatherStatForBg,
   } = useGlobalContext();
   // const date = new Date();
   // const getCurrentTime = () => {
@@ -29,6 +29,14 @@ const TemperatureContainer = () => {
   //   const time = `${hour}:${minute}:${second}`;
   //   setTime(time);
   // };
+ 
+  const imagesKey = Object.keys(images);
+  const setBgImg = imagesKey.find((image) => {
+      if(image.includes(weatherStatForBg?.toLowerCase())) {
+        return image;
+      }
+    });
+console.log(images[setBgImg]);
   let clock = moment(new Date()).format("ddd D MMM YYYY hh:mm:ss A");
   useEffect(() => {
     const interval = setInterval(() => {
@@ -40,7 +48,11 @@ const TemperatureContainer = () => {
   return (
     <>
       <div className="bg-img position-absolute">
-        <img src={images.cloudy} alt="" className="img-fluid" />
+        <img
+          src={setBgImg ? images[setBgImg] : images.atmosphere}
+          alt=""
+          className="img-fluid"
+        />
         <div className="img-cover"></div>
       </div>
 
@@ -184,16 +196,21 @@ const TemperatureContainer = () => {
                 </nav>
               </div>
               {loading && <Loading />}
+
               {temp ? (
                 <div className="flex-grow-1">
                   <div className=" h-100 d-flex align-items-center justify-content-center flex-column">
                     <div>
                       <div className="d-flex align-items-center">
-                        <img src={images.cloudy} alt="cloudy" />
                         <div className="me-4">
                           <i className="icon big white">
                             {
-                              <img src="http://openweathermap.org/img/wn/01d@2x.png" />
+                              <img
+                                src={`http://openweathermap.org/img/wn/${
+                                  weather[0].icon
+                                }@2x.png`}
+                                alt={weather[0].icon}
+                              />
                             }
                           </i>
                         </div>

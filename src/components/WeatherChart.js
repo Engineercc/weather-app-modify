@@ -16,6 +16,7 @@ const WeatherChart = () => {
       const minTemp = Math.round(item[tabCount].main.temp_min - kelvinValue);
       const maxTemp = Math.round(item[tabCount].main.temp_max - kelvinValue);
       const humidity = item[tabCount].main.humidity;
+      
       const time = item[index].dt_txt.slice(11, 16);
       return {
         currentDay: dayName,
@@ -29,8 +30,8 @@ const WeatherChart = () => {
     });
   return (
     <LineChart
-      width={1000}
-      height={500}
+      width={800}
+      height={400}
       data={modifiedArray}
       margin={{
         top: 5,
@@ -48,14 +49,14 @@ const WeatherChart = () => {
         type="monotone"
         dataKey="minTemp"
         name="Min. Temperature"
-        stroke="#8884d8"
+        stroke="#c155ed"
         activeDot={{ r: 8 }}
       />
       <Line
         type="monotone"
         dataKey="maxTemp"
         name="Max. Temperature"
-        stroke="#82ca9d"
+        stroke="#10a19d"
       />
     </LineChart>
   );

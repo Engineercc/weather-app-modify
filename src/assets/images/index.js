@@ -1,7 +1,18 @@
-const clouds = '../images/cloudy.jpg'
-const thunderstorm = '../images/thunderstorm.jpg'
-const rain = '../images/rainy.jpg'
-const snow = '../images/snowy-2.jpg'
-const defaultWeather = '../images/default-weather.jpg'
-
-export {clouds,thunderstorm,rain,snow,defaultWeather}
+import clouds from "./cloudy.jpg";
+import thunderstorm from "./thunderstorm.jpg";
+import snow from "./snowy-2.jpg";
+import rain from "./rainy.jpg";
+import defaultImg from "./default-weather.jpg";
+import drizzle from "./drizzle.jpg"
+import clear from "./clear.jpg"
+import atmosphere from "./atmosphere.jpg"
+export default {
+  clouds,
+  thunderstorm,
+  snow,
+  rain,
+  clear,
+  drizzle,
+  atmosphere,
+  defaultImg
+};
