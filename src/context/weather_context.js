@@ -9,7 +9,7 @@ import {
 import reducer from "../reducer";
 import { geoLocationFetch, weatherFetch } from "../utils/customFetch";
 import moment from "moment/moment";
-import images from "./../images";
+
 
 const WeatherContext = createContext();
 const kelvinValue = 273;
@@ -75,7 +75,6 @@ const WeatherProvider = ({ children }) => {
     setTabCount(0);
   };
 
-  console.log(state);
   const clearValues = () => {
     dispatch({
       type: "CLEAR_WEATHER_VALUES",
@@ -128,7 +127,7 @@ const WeatherProvider = ({ children }) => {
     try {
       const response = await geoLocationFetch.get(geoLoc_url);
       const data = response.data;
-      console.log(data);
+      // console.log(data);
       dispatch({
         type: "GET_GEO_INFORMATIONS",
         payload: data,
@@ -150,7 +149,6 @@ const WeatherProvider = ({ children }) => {
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   };
-  console.log(currentPosition);
   useEffect(() => {
     getCurrentLocationUser();
   }, []);

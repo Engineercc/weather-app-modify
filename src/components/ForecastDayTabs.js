@@ -2,6 +2,7 @@ import React, { useState,useEffect } from "react";
 import WeatherChart from "./WeatherChart";
 import WeatherDataTable from "./WeatherDataTable";
 import { useGlobalContext } from "./../context/weather_context";
+import WeatherAreaChart from "./WeatherAreaChart";
 
 const ForecastDayTabs = () => {
   const [displayChart, setDisplayChart] = useState(true);
@@ -14,12 +15,6 @@ const ForecastDayTabs = () => {
     currentLocationName,
     days,
   } = useGlobalContext();
-<<<<<<< HEAD
-=======
-useEffect(() => {
-  setDisplayChart(true);
-}, [cityName]);
->>>>>>> 1ec4aececc9933e9c0cfc952c310f9b67f22ee37
 
   return (
     <div className="weather-tabs mt-4">
@@ -28,12 +23,7 @@ useEffect(() => {
           {fiveDaysArr.map((day, index) => {
             let dateName = new Date(day[index].dt * 1000);
             console.log(dateName);
-<<<<<<< HEAD
             let dayName = days[dateName.getDay()];
-=======
-            let dayName = days[dateName.getUTCDay()];
-            console.log(dayName);
->>>>>>> 1ec4aececc9933e9c0cfc952c310f9b67f22ee37
             return (
               <button
                 type="button"
@@ -60,27 +50,18 @@ useEffect(() => {
           <button
             className="btn btn-favorite mx-4"
             onClick={() => setDisplayChart(!displayChart)}
-          >{`${displayChart ? "Weather Line Chart" : "Weather Table"}`}</button>
+          >{`${displayChart ? "Display Weather with Charts" : "Display Weather Table"}`}</button>
           
         </div>
         <div className="mt-3">
-          {displayChart ? <WeatherDataTable /> : <WeatherChart />}
+          {displayChart ? <WeatherDataTable /> : <><WeatherChart /> <WeatherAreaChart /></>}
         </div>
-<<<<<<< HEAD
-        {/* <button type="button" onClick={() => setDisplayChart(!displayChart)}>
-          {displayChart ? "Data Table" : "Line Chart"}
-        </button>
-        {displayChart ? (
-          <WeatherChart  />
-        ) : (
-          <WeatherDataTable  />
-        )} */}
-        <div className="d-flex">
+        <h2 className="m-4">Table And Line Chart</h2>
+        <div className="">
           <WeatherDataTable />
           <WeatherChart />
+          <WeatherAreaChart />
         </div>
-=======
->>>>>>> 1ec4aececc9933e9c0cfc952c310f9b67f22ee37
       </div>
     </div>
   );
