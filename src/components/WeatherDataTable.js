@@ -8,7 +8,6 @@ const WeatherDataTable = () => {
       <tbody>
         {fiveDaysArr.map((day, index) => {
           const temp = Math.round(day[tabCount].main.temp - kelvinValue);
-          console.log(temp);
           const feelsLike = Math.round(
             day[tabCount].main.feels_like - kelvinValue
           );
